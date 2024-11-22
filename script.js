@@ -1,12 +1,6 @@
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   const firebaseConfig = {
     apiKey: "AIzaSyDigQuUDthM_DGzYE8Ntaa4JUALoDWmCRI",
     authDomain: "jdmlplanner.firebaseapp.com",
@@ -19,5 +13,71 @@
 
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
+  const db = getDatabase(app);
+
+  document.getElementById('eventForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    // Collect form data
+    const event = {
+        name: document.getElementById('eventName').value,
+        date: document.getElementById('eventDate').value,
+        time: document.getElementById('eventTime').value,
+        venue: document.getElementById('eventVenue').value,
+        description: document.getElementById('eventDescription').value,
+        budget: document.getElementById('eventBudget').value,
+        guests: document.getElementById('eventGuests').value,
+        resources: document.getElementById('eventResources').value
+    };
+
+    // Save data to Firebase
+    const eventRef = ref(database, 'events');
+    const newEventRef = push(eventRef);
+
+    set(newEventRef, event)
+        .then(() => {
+            alert('Event added successfully!');
+            document.getElementById('eventForm').reset();
+            const modalElement = document.querySelector('#addEventModal');
+            const modalInstance = bootstrap.Modal.getInstance(modalElement);
+            modalInstance.hide();
+        })
+        .catch((error) => {
+            console.error('Error adding event:', error);
+            alert('Error adding event. Please try again.')
+          });
+});
+
+document.getElementById('eventForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  // Collect form data
+  const event = {
+      name: document.getElementById('eventName').value,
+      date: document.getElementById('eventDate').value,
+      time: document.getElementById('eventTime').value,
+      venue: document.getElementById('eventVenue').value,
+      description: document.getElementById('eventDescription').value,
+      budget: document.getElementById('eventBudget').value,
+      guests: document.getElementById('eventGuests').value,
+      resources: document.getElementById('eventResources').value
+  };
+
+  // Save data to Firebase
+  const eventRef = ref(database, 'events');
+  const newEventRef = push(eventRef);
+
+  set(newEventRef, event)
+      .then(() => {
+          alert('Event added successfully!');
+          document.getElementById('eventForm').reset();
+          const modalElement = document.querySelector('#addEventModal');
+          const modalInstance = bootstrap.Modal.getInstance(modalElement);
+          modalInstance.hide();
+      })
+      .catch((error) => {
+          console.error('Error adding event:', error);
+          alert('Error adding event. Please try again.')});
+        });
+ 
+        
