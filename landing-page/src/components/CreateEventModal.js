@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 
 const CreateEventModal = ({ open, onClose }) => {
-  const teams = ['Team Alpha', 'Team Beta', 'Team Gamma'];
+  const teams = ['IT Club', 'Math Club', 'Debate Club', 'Club not Listed', 'Not Part of Club or Organization'];
 
   return (
     <Modal open={open} onClose={onClose}>
@@ -38,7 +38,7 @@ const CreateEventModal = ({ open, onClose }) => {
           rows={3}
           sx={{ mb: 2 }}
         />
-        <TextField fullWidth select label="Team Name" sx={{ mb: 2 }}>
+        <TextField fullWidth select label="Club Name" sx={{ mb: 2 }}>
           {teams.map((team) => (
             <MenuItem key={team} value={team}>
               {team}

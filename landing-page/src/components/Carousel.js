@@ -13,7 +13,7 @@ const Carousel = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length); // Loop through images
-    }, 2000); // Change slide every 2 seconds
+    }, 6000); // Change slide every 2 seconds
 
     return () => clearInterval(interval); // Cleanup on unmount
   }, [images.length]);
@@ -22,7 +22,7 @@ const Carousel = () => {
     <Box
       sx={{
         width: '100%',
-        height: { xs: '300px', sm: '500px', md: '700px' }, // Responsive height
+        height: 'auto', // Responsive height
         overflow: 'hidden', // Hide content outside the bounds
         position: 'relative',
       }}
@@ -33,8 +33,6 @@ const Carousel = () => {
           display: 'flex',
           transition: 'transform 0.5s ease-in-out', // Smooth slide animation
           transform: `translateX(-${currentIndex * 100}%)`, // Move to the current slide
-          width: `${images.length * 100}%`, // Dynamic width based on number of images
-          height: '100%', // Ensure it takes the full height of the outer Box
         }}
       >
         {images.map((img, index) => (
@@ -51,14 +49,13 @@ const Carousel = () => {
           >
             {/* Render the image */}
             <img
-              src={img}
-              alt={`Slide ${index + 1}`}
-              style={{
-                width: '50%',
-                height: '50%',
-                objectFit: 'cover', // Ensures the image covers the entire slide
-              }}
-            />
+          src={img}
+          alt={`Slide ${index + 1}`}
+          style={{
+          width: '45%', // Ensures the image spans the full width of the slide
+          height: '100%', // Ensures the image spans the full height of the slide
+          }}
+          />
           </Box>
         ))}
       </Box>
