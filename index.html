@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Showcase</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #575757;
+        }
+        .container {
+            text-align: center;
+            margin: 20px;
+        }
+        .carousel {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+        }
+        .carousel img {
+            width: 100%;
+            display: none;
+        }
+        .carousel img.active {
+            display: block;
+        }
+        .caption {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#plan">Plan Event</a>
+        <a href="#contact">Contact Us</a>
+    </nav>
+
+    <div class="container">
+        <div class="carousel">
+            <img src="https://via.placeholder.com/800x400?text=Event+1" class="active" alt="Event 1">
+            <img src="https://via.placeholder.com/800x400?text=Event+2" alt="Event 2">
+            <img src="https://via.placeholder.com/800x400?text=Event+3" alt="Event 3">
+        </div>
+        <div class="caption" id="caption">Welcome to our first event!</div>
+    </div>
+
+    <script>
+        const images = document.querySelectorAll('.carousel img');
+        const captions = [
+            "Welcome to our first event!",
+            "Experience the excitement of our second event!",
+            "Don't miss our spectacular third event!"
+        ];
+        const captionElement = document.getElementById('caption');
+        let index = 0;
+
+        function changeImage() {
+            images[index].classList.remove('active');
+            index = (index + 1) % images.length;
+            images[index].classList.add('active');
+            captionElement.innerText = captions[index];
+        }
+
+        setInterval(changeImage, 3000); // Change image every 3 seconds
+    </script>
+</body>
+</html>
