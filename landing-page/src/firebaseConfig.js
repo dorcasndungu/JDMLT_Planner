@@ -28,8 +28,8 @@ const addDummyData = async () => {
       // Dummy collection: 'users'
       const usersRef = doc(db, "users", "user_1"); // Document ID: 'user_1'
       await setDoc(usersRef, {
-        email: "tmjoris@usiu.ac.ke",
-        password: "WsEdRfTgYh@123#"
+        email: "tmj@usiu.ac.ke",
+        password: "g123455678"
     });
   
         
