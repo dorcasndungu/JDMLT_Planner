@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { getFirestore, doc, setDoc } from 'firebase/firestore'; // Import Firestore methods
 
 const LoginModal = ({ open, onClose }) => {
   const [email, setEmail] = useState('');
@@ -25,29 +23,7 @@ const LoginModal = ({ open, onClose }) => {
       return;
     }
 
-    try {
-      const auth = getAuth();
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
 
-      // Create user data in Firestore (save user data after successful login)
-      const db = getFirestore();
-      await setDoc(doc(db, 'users', user.uid), {
-        email: user.email,
-        lastLogin: new Date(),
-        name: 'User Name', // This should be set based on your user data or registration process
-      });
-
-      console.log('Logged in successfully');
-      
-      // Clear fields and close modal
-      setEmail('');
-      setPassword('');
-      onClose();
-    } catch (error) {
-      console.error('Error logging in:', error);
-      setErrorMessage('Error logging in. Please check your credentials and try again.');
-    }
   };
 
   return (
