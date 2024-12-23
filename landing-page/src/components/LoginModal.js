@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { loginWithEmail } from '../loginAuth';
 
 const LoginModal = ({ open, onClose }) => {
   const [email, setEmail] = useState('');
@@ -11,7 +12,6 @@ const LoginModal = ({ open, onClose }) => {
     event.preventDefault();
     setErrorMessage('');
 
-    // Basic validation
     if (!email || !password) {
       setErrorMessage('Please fill in both fields.');
       return;
@@ -23,6 +23,16 @@ const LoginModal = ({ open, onClose }) => {
       return;
     }
 
+    try{
+      await loginWithEmail(email, password);
+      setEmail('');
+      setPassword('');
+      onClose();
+      console.log('Login successful')
+
+    } catch(error) {
+      setErrorMessage(error.message);
+    }
 
   };
 
