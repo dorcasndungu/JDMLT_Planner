@@ -42,7 +42,7 @@ const LoginModal = ({ open, onClose }) => {
         <button onClick={onClose} style={styles.closeButton}>
           ×
         </button>
-        <h2>Log In</h2>
+        <h2 style={styles.h2}>Log In</h2>
         {errorMessage && <div style={styles.error}>{errorMessage}</div>}
         <form onSubmit={handleSubmit}>
           <div style={styles.inputContainer}>
@@ -87,6 +87,14 @@ const LoginModal = ({ open, onClose }) => {
 };
 
 const styles = {
+  h2: {
+    color: 'black',
+    visibility: 'visible',
+    textAlign: 'center',
+    fontSize: '24px',
+    position: 'relative'
+  },
+
   overlay: {
     position: 'fixed',
     top: 0,
