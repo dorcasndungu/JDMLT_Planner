@@ -104,9 +104,10 @@ const styles = {
     padding: '20px',
     borderRadius: '8px',
     position: 'relative',
-    minWidth: '300px',
-    maxWidth: '500px',
+    width: '500px',
     zIndex: 1001,
+    display: 'flex',
+    flexDirection: 'column',
   },
   closeButton: {
     position: 'absolute',
@@ -119,6 +120,8 @@ const styles = {
   },
   inputContainer: {
     marginBottom: '15px',
+    maxWidth: '450px',
+    width: '100%'
   },
   label: {
     display: 'block',
