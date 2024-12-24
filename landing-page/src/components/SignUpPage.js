@@ -69,53 +69,116 @@ const SignUpPage = () => {
     alert('Sign-up successful!');
   };
 
+  const styles = {
+    container: {
+      maxWidth: '600px',
+      margin: '40px auto',
+      padding: '20px',
+      backgroundColor: '#f9f9f9',
+      borderRadius: '10px',
+      boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
+      fontFamily: 'Arial, sans-serif',
+    },
+    title: {
+      textAlign: 'center',
+      color: '#333',
+      fontSize: '24px',
+      marginBottom: '20px',
+    },
+    formGroup: {
+      marginBottom: '15px',
+    },
+    label: {
+      display: 'block',
+      fontWeight: 'bold',
+      marginBottom: '5px',
+      color: '#555',
+    },
+    input: {
+      width: '100%',
+      padding: '10px',
+      borderRadius: '5px',
+      border: '1px solid #ccc',
+      fontSize: '16px',
+    },
+    select: {
+      width: '100%',
+      padding: '10px',
+      borderRadius: '5px',
+      border: '1px solid #ccc',
+      fontSize: '16px',
+    },
+    button: {
+      width: '100%',
+      padding: '10px',
+      backgroundColor: '#007bff',
+      color: '#fff',
+      border: 'none',
+      borderRadius: '5px',
+      fontSize: '18px',
+      cursor: 'pointer',
+    },
+    buttonHover: {
+      backgroundColor: '#0056b3',
+    },
+    errorMessage: {
+      color: 'red',
+      textAlign: 'center',
+      marginBottom: '15px',
+    },
+  };
+
   return (
-    <div style={{ maxWidth: '500px', margin: 'auto', padding: '20px' }}>
-      <h1>Club Sign-Up</h1>
+    <div style={styles.container}>
+      <h1 style={styles.title}>Club Sign-Up</h1>
       <form onSubmit={handleSubmit}>
         {/* Email */}
-        <div>
-          <label>Email: </label>
+        <div style={styles.formGroup}>
+          <label style={styles.label}>Email:</label>
           <input
             type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
+            style={styles.input}
             required
           />
         </div>
 
         {/* First Name */}
-        <div>
-          <label>First Name: </label>
+        <div style={styles.formGroup}>
+          <label style={styles.label}>First Name:</label>
           <input
             type="text"
             name="firstName"
             value={formData.firstName}
             onChange={handleChange}
+            style={styles.input}
             required
           />
         </div>
 
         {/* Last Name */}
-        <div>
-          <label>Last Name: </label>
+        <div style={styles.formGroup}>
+          <label style={styles.label}>Last Name:</label>
           <input
             type="text"
             name="lastName"
             value={formData.lastName}
             onChange={handleChange}
+            style={styles.input}
             required
           />
         </div>
 
         {/* Club */}
-        <div>
-          <label>Club: </label>
+        <div style={styles.formGroup}>
+          <label style={styles.label}>Club:</label>
           <select
             name="club"
             value={formData.club}
             onChange={handleChange}
+            style={styles.select}
             required
           >
             <option value="">Select a club</option>
@@ -132,18 +195,20 @@ const SignUpPage = () => {
               placeholder="Enter club name"
               value={formData.customClub}
               onChange={handleChange}
+              style={{ ...styles.input, marginTop: '10px' }}
               required
             />
           )}
         </div>
 
         {/* Role */}
-        <div>
-          <label>Role: </label>
+        <div style={styles.formGroup}>
+          <label style={styles.label}>Role:</label>
           <select
             name="role"
             value={formData.role}
             onChange={handleChange}
+            style={styles.select}
             required
           >
             <option value="">Select a role</option>
@@ -160,17 +225,25 @@ const SignUpPage = () => {
               placeholder="Enter role name"
               value={formData.customRole}
               onChange={handleChange}
+              style={{ ...styles.input, marginTop: '10px' }}
               required
             />
           )}
         </div>
 
         {/* Error Message */}
-        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+        {errorMessage && <p style={styles.errorMessage}>{errorMessage}</p>}
 
         {/* Submit */}
         <div>
-          <button type="submit">Sign Up</button>
+          <button
+            type="submit"
+            style={styles.button}
+            onMouseOver={(e) => (e.target.style.backgroundColor = styles.buttonHover.backgroundColor)}
+            onMouseOut={(e) => (e.target.style.backgroundColor = styles.button.backgroundColor)}
+          >
+            Sign Up
+          </button>
         </div>
       </form>
     </div>

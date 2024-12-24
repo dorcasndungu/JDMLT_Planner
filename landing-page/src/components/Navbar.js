@@ -17,6 +17,11 @@ const Navbar = () => {
 
   const navigate = useNavigate();
 
+  const handleSignUpClick = () => {
+    navigate('/signup');
+  };
+  
+
   return (
     <AppBar position="static" sx={{ backgroundColor: '#0d1117' }}>
       <Toolbar>
@@ -32,7 +37,7 @@ const Navbar = () => {
             Log In
           </Button>
 
-          <Button color="inherit" sx={{ ml:2 }} onClick={navigate('/signup')}>
+          <Button color="inherit" sx={{ ml:2 }} onClick={handleSignUpClick}>
             Sign In
           </Button>
 
