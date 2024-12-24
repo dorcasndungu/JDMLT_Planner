@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Box, Button } from '@mui/material';
 import LoginModal from './LoginModal';
+
 
 const Navbar = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -12,6 +14,13 @@ const Navbar = () => {
   const handleCloseModal = () => {
     setOpenModal(false);
   };
+
+  const navigate = useNavigate();
+
+  const handleSignUpClick = () => {
+    navigate('/signup');
+  };
+  
 
   return (
     <AppBar position="static" sx={{ backgroundColor: '#0d1117' }}>
@@ -26,6 +35,10 @@ const Navbar = () => {
 
           <Button color="inherit" sx={{ ml: 2 }} onClick={handleOpenModal}>
             Log In
+          </Button>
+
+          <Button color="inherit" sx={{ ml:2 }} onClick={handleSignUpClick}>
+            Sign In
           </Button>
 
           <LoginModal open={openModal} onClose={handleCloseModal} />
