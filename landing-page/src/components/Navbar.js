@@ -38,7 +38,7 @@ const Navbar = () => {
           </Button>
 
           <Button color="inherit" sx={{ ml:2 }} onClick={handleSignUpClick}>
-            Sign In
+            Sign Up
           </Button>
 
           <LoginModal open={openModal} onClose={handleCloseModal} />

@@ -1,8 +1,9 @@
-import {getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import app from './firebaseConfig';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import firebaseServices from './firebaseConfig';
+
+const {auth} = firebaseServices;
 
 export const loginWithEmail = async(email, password) => {
-    const auth = getAuth(app);
     return await signInWithEmailAndPassword(auth, email, password);
 };
 
