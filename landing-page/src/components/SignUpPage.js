@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { createUser } from '../signUp';
 
 const SignUpPage = () => {
   const [formData, setFormData] = useState({
     email: '',
+    password: '',
     firstName: '',
     lastName: '',
     club: '',
@@ -45,12 +47,8 @@ const SignUpPage = () => {
     e.preventDefault();
     setErrorMessage('');
 
-    const { email, firstName, lastName, club, role, customClub, customRole } = formData;
+    const { email, password, firstName, lastName, club, role, customClub, customRole } = formData;
 
-    if (!email || !firstName || !lastName) {
-      setErrorMessage('Please fill in all required fields.');
-      return;
-    }
 
     const selectedClub = club === 'Club not listed' ? customClub : club;
     const selectedRole = role === 'Role not listed' ? customRole : role;
@@ -65,7 +63,8 @@ const SignUpPage = () => {
       return;
     }
 
-    console.log('Form Submitted:', { email, firstName, lastName, selectedClub, selectedRole });
+    console.log('Form Submitted:', { email, password, firstName, lastName, selectedClub, selectedRole });
+    createUser(email, password, firstName, lastName, selectedClub, selectedRole);
     alert('Sign-up successful!');
   };
 
@@ -139,6 +138,18 @@ const SignUpPage = () => {
             type="email"
             name="email"
             value={formData.email}
+            onChange={handleChange}
+            style={styles.input}
+            required
+          />
+        </div>
+
+        <div style={styles.formGroup}>
+          <label style={styles.label}></label>
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
             onChange={handleChange}
             style={styles.input}
             required
